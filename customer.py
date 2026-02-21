@@ -49,7 +49,8 @@ class Customer:
     def delete_customer(cls, customer_id):
         """Delete a customer by ID."""
         customers = cls.load_customers()
-        new_customers = [c for c in customers if c['customer_id'] != customer_id]
+        new_customers = [c for c in customers
+                         if c['customer_id'] != customer_id]
         if len(new_customers) == len(customers):
             print(f"Customer with ID {customer_id} not found.")
             return False

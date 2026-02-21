@@ -1,0 +1,5 @@
+__pycache__/
+.coverage
+*.json
+*_evidence.txt
+test_results.txt

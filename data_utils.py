@@ -12,13 +12,15 @@ class DataHandler:
 
     @staticmethod
     def load_data(file_name):
-        """Load data from a JSON file."""
+        """Load data from a JSON file. Prints error if malformed."""
         if not os.path.exists(file_name):
             return []
         try:
             with open(file_name, 'r', encoding='utf-8') as file:
                 return json.load(file)
-        except (json.JSONDecodeError, IOError):
+        except (json.JSONDecodeError, IOError) as error:
+            # Req 5: Display error in console and continue
+            print(f"Error loading {file_name}: {error}")
             return []
 
     @staticmethod
@@ -29,5 +31,5 @@ class DataHandler:
                 json.dump(data, file, indent=4)
             return True
         except IOError as error:
-            print(f"Error saving data to {file_name}: {error}")
+            print(f"Error saving {file_name}: {error}")
             return False

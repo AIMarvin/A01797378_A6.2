@@ -38,15 +38,17 @@ class TestReservation(unittest.TestCase):
         self.assertEqual(hotel["rooms"], 0)
 
     def test_create_reservation_no_rooms(self):
-        """Test creating a reservation when no rooms are available (Negative)."""
+        """Test reservation when no rooms are available (Negative)."""
         Reservation.create_reservation("R1", "C1", "H1")
-        # Try second reservation in same hotel (only 1 room available initially)
+        # Try second reservation in same hotel (only 1 room initially)
         Customer.create_customer("C2", "Jane", "jane@example.com")
         self.assertFalse(Reservation.create_reservation("R2", "C2", "H1"))
 
     def test_create_reservation_invalid_customer(self):
-        """Test creating a reservation with non-existent customer (Negative)."""
-        self.assertFalse(Reservation.create_reservation("R1", "INVALID", "H1"))
+        """Test reservation with non-existent customer (Negative)."""
+        self.assertFalse(Reservation.create_reservation("R1",
+                                                        "INVALID",
+                                                        "H1"))
 
     def test_create_reservation_invalid_hotel(self):
         """Test creating a reservation with non-existent hotel (Negative)."""

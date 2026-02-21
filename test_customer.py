@@ -3,7 +3,6 @@ Unit tests for Customer class.
 """
 import unittest
 import os
-import json
 from customer import Customer
 
 
@@ -22,7 +21,8 @@ class TestCustomer(unittest.TestCase):
 
     def test_create_customer(self):
         """Test creating a customer."""
-        self.assertTrue(Customer.create_customer("C1", "John Doe", "john@example.com"))
+        self.assertTrue(Customer.create_customer("C1", "John Doe",
+                                                 "john@example.com"))
         customers = Customer.load_customers()
         self.assertEqual(len(customers), 1)
         self.assertEqual(customers[0]["name"], "John Doe")
@@ -31,7 +31,8 @@ class TestCustomer(unittest.TestCase):
         """Test creating a customer with existing ID (Negative)."""
         Customer.create_customer("C1", "John Doe", "john@example.com")
         # Duplicate ID
-        self.assertFalse(Customer.create_customer("C1", "Jane Smith", "jane@example.com"))
+        self.assertFalse(Customer.create_customer("C1", "Jane Smith",
+                                                  "jane@example.com"))
 
     def test_delete_customer(self):
         """Test deleting a customer."""
