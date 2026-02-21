@@ -61,7 +61,8 @@ class Customer:
         """Display customer information."""
         customers = cls.load_customers()
         customer = next((c for c in customers
-                         if c['customer_id'] == customer_id), None)
+                         if c['customer_id'] == customer_id),
+                        None)
         if customer:
             print(f"Customer ID: {customer['customer_id']}")
             print(f"Name: {customer['name']}")
