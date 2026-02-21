@@ -19,7 +19,6 @@ class DataHandler:
             with open(file_name, 'r', encoding='utf-8') as file:
                 return json.load(file)
         except (json.JSONDecodeError, IOError) as error:
-            # Req 5: Display error in console and continue
             print(f"Error loading {file_name}: {error}")
             return []
 

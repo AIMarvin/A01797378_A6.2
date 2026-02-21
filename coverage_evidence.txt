@@ -1,4 +1,10 @@
-﻿Name                  Stmts   Miss  Cover
+======================================================================
+CODE COVERAGE REPORT
+======================================================================
+Date: 2026-02-21 13:06:20
+Command: python -m coverage run -m pytest test_hotel.py test_customer.py test_reservation.py
+
+Name                  Stmts   Miss  Cover
 -----------------------------------------
 customer.py              58      1    98%
 data_utils.py            22      3    86%
@@ -9,3 +15,7 @@ test_hotel.py            33      2    94%
 test_reservation.py      42      2    95%
 -----------------------------------------
 TOTAL                   315     18    94%
+
+======================================================================
+RESULT: TOTAL COVERAGE EXCEEDS 85% THRESHOLD
+======================================================================

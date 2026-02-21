@@ -38,20 +38,17 @@ class Reservation:
     @classmethod
     def create_reservation(cls, reservation_id, customer_id, hotel_id):
         """Create a new reservation if customer and hotel exist."""
-        # Check if customer exists
         customers = Customer.load_customers()
         if not any(c['customer_id'] == customer_id for c in customers):
             print(f"Customer with ID {customer_id} not found.")
             return False
 
-        # Check if hotel exists
         hotels = Hotel.load_hotels()
         hotel = next((h for h in hotels if h['hotel_id'] == hotel_id), None)
         if not hotel:
             print(f"Hotel with ID {hotel_id} not found.")
             return False
 
-        # Check for room availability
         if hotel['rooms'] <= 0:
             print(f"No rooms available in hotel {hotel_id}.")
             return False
@@ -61,12 +58,10 @@ class Reservation:
             print(f"Reservation with ID {reservation_id} already exists.")
             return False
 
-        # Create reservation
         new_reservation = cls(reservation_id, customer_id, hotel_id)
         reservations.append(new_reservation.to_dict())
         cls.save_reservations(reservations)
 
-        # Update hotel room count
         Hotel.modify_hotel(hotel_id, rooms=hotel['rooms'] - 1)
         return True
 
@@ -85,7 +80,6 @@ class Reservation:
                    if r['reservation_id'] != reservation_id]
         cls.save_reservations(new_res)
 
-        # Update hotel room count (increment)
         hotels = Hotel.load_hotels()
         hotel = next((h for h in hotels
                       if h['hotel_id'] == reservation['hotel_id']), None)

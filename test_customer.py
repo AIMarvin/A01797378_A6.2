@@ -30,7 +30,6 @@ class TestCustomer(unittest.TestCase):
     def test_create_duplicate_customer(self):
         """Test creating a customer with existing ID (Negative)."""
         Customer.create_customer("C1", "John Doe", "john@example.com")
-        # Duplicate ID
         self.assertFalse(Customer.create_customer("C1", "Jane Smith",
                                                   "jane@example.com"))
 
